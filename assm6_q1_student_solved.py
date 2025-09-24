@@ -121,39 +121,40 @@ def task4_variance_scaling(N=1000, m_list=[1,2,10,100]):
 # ================================
 # Task 5: Mean vs. standard deviation
 # ================================
-# def task5_mean_std(N=1000, m=10):
-#     for name, dist in dists.items():
-#         # draw N samples, each of size m
-#         data = dist.rvs(size=(N,m))
-#         means = np.mean(data, axis=1)
-#         stds  = np.std(data, axis=1)
+def task5_mean_std(N=1000, m=10):
+    for name, dist in dists.items():
+        # draw N samples, each of size m
+        data = dist.rvs(size=(N,m))
+        means = np.mean(data, axis=1)
+        stds  = np.std(data, axis=1)
 
-#         # WRITE_YOUR_CODE HERE TO COMPUTE THEORETICAL MEAN, STD OF SAMPLE MEANS
-#         # theoretical CLT parameters
-#         theo_mu  = 
-#         theo_std = 
-#         # this code block ends here
+        # WRITE_YOUR_CODE HERE TO COMPUTE THEORETICAL MEAN, STD OF SAMPLE MEANS
+        # theoretical CLT parameters
+        theo_mu  = dist.mean()
+        theo_std = dist.std()/np.sqrt(m)
+        # this code block ends here
 
-#         fig, axes = plt.subplots(1,2, figsize=(12,4))
-#         fig.suptitle(f"{name}: Sample Means vs Stds", fontsize=14)
+        fig, axes = plt.subplots(1,2, figsize=(12,4))
+        fig.suptitle(f"{name}: Sample Means vs Stds", fontsize=14)
 
-#         # --- Means (CLT applies) ---
-#         axes[0].hist(means, bins=20, density=True, color='purple', alpha=0.7, label="Simulated Means")
+        # --- Means (CLT applies) ---
+        axes[0].hist(means, bins=20, density=True, color='purple', alpha=0.7, label="Simulated Means")
 
-#         # overlay Normal approx from CLT
-#         x = np.linspace(min(means), max(means), 200)
-#         axes[0].plot(x, norm.pdf(x, loc=theo_mu, scale=theo_std), 'r-', lw=2, label="CLT Normal Approx")
-#         axes[0].set_title("Sample Means (≈ Normal by CLT)")
-#         axes[0].legend()
-#         axes[0].grid(True)
+        # overlay Normal approx from CLT
+        x = np.linspace(min(means), max(means), 200)
+        axes[0].plot(x, norm.pdf(x, loc=theo_mu, scale=theo_std), 'r-', lw=2, label="CLT Normal Approx")
+        axes[0].set_title("Sample Means (≈ Normal by CLT)")
+        axes[0].legend()
+        axes[0].grid(True)
 
-#         # --- Standard deviations (no CLT) ---
-#         axes[1].hist(stds, bins=20, density=True, color='brown', alpha=0.7, label="Simulated Stds")
-#         axes[1].set_title("Sample Standard Deviations (not Normal)")
-#         axes[1].legend()
-#         axes[1].grid(True)
+        # --- Standard deviations (no CLT) ---
+        axes[1].hist(stds, bins=20, density=True, color='brown', alpha=0.7, label="Simulated Stds")
+        axes[1].plot(x, norm.pdf(x, loc=theo_mu, scale=theo_std), 'r-', lw=2, label="CLT Normal Approx")
+        axes[1].set_title("Sample Standard Deviations (not Normal)")
+        axes[1].legend()
+        axes[1].grid(True)
 
-#         plt.tight_layout(rect=[0, 0, 1, 0.95])
+        plt.tight_layout(rect=[0, 0, 1, 0.95])
 
 
 # ================================
@@ -169,10 +170,10 @@ if __name__ == "__main__":
     # print("Task 3: Averaging Effect")
     # task3_averaging()
     
-    print("Task 4: Variance Scaling")
-    task4_variance_scaling()
+    # print("Task 4: Variance Scaling")
+    # task4_variance_scaling()
     
-    # print("Task 5: Mean vs Standard Deviation")
-    # task5_mean_std()
+    print("Task 5: Mean vs Standard Deviation")
+    task5_mean_std()
 
     plt.show() # do not comment this out

@@ -2,11 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
 
-def confidence_interval(N_samples=100, sample_size=30, true_mean=61, true_std=9.15, confidence=0.95):
+# for values close to 100 samples the misses are close to 5% as expected from CI. When the samplesizes decreased the number of misses also get more random.
+# By increasing the confidence interval also the numbre of misses are drastically reduced. The same has been demonstrated in the code below.
+def confidence_interval(N_samples=100, sample_size=30, true_mean=61, true_std=9.15, confidence=0.99):
     """
     Demonstrates 95% confidence intervals for the mean.
     Parameters:
-    - N_samples: Number of independent samples (here 40)
+    - N_samples: Number of independent samples (here 40) for
     - sample_size: Number of observations per sample
     - true_mean: True population mean
     - true_std: True population standard deviation
@@ -15,7 +17,7 @@ def confidence_interval(N_samples=100, sample_size=30, true_mean=61, true_std=9.
     
     # WRITE_YOUR_CODE HERE TO COMPUTE THE Z VALUE
     # Z value for the two-tailed confidence interval
-    alpha = 0.05
+    alpha = 1 - confidence
     z = norm.ppf(1 - alpha/2)
     # this code block ends here
 
@@ -68,7 +70,7 @@ def confidence_interval(N_samples=100, sample_size=30, true_mean=61, true_std=9.
     
     # WRITE_YOUR_CODE HERE TO PRINT THE NUMBER OF MISSES AND THE PERCENTAGE
     print(f"Out of {N_samples} intervals, {misses} did NOT contain the true mean.")
-    print(f"This is roughly {misses/N_samples*100}%, close to the expected 5% for a 95% CI.")
+    print(f"This is roughly {misses/N_samples*100}%, close to the expected 1% for a 99% CI.")
     # this code block ends here
 
 # ================================
