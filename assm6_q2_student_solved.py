@@ -4,7 +4,7 @@ from scipy.stats import norm
 
 # for values close to 100 samples the misses are close to 5% as expected from CI. When the samplesizes decreased the number of misses also get more random.
 # By increasing the confidence interval also the numbre of misses are drastically reduced. The same has been demonstrated in the code below.
-def confidence_interval(N_samples=100, sample_size=30, true_mean=61, true_std=9.15, confidence=0.99):
+def confidence_interval(N_samples=40, sample_size=100, true_mean=61, true_std=9.15, confidence=0.99):
     """
     Demonstrates 95% confidence intervals for the mean.
     Parameters:
